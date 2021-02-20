@@ -1,0 +1,20 @@
+nelmio_api_doc:
+  models:
+    use_jms: true
+  areas:
+    path_patterns: # an array of regexps
+      - '^/api/v1/(?!doc|internal).*$'
+  documentation:
+    info:
+      title: 'Cash Register'
+      version: 0.0.1
+    produces: ["application/json","application/xml", "multipart/form-data"]
+    securityDefinitions:
+      Bearer:
+        type: apiKey
+        description: 'Value: Bearer {token}'
+        name: Authorization
+        in: header
+    security:
+    - Bearer: []
+      api_key: [session]
