@@ -13,7 +13,7 @@ class VatCalculator
         self::VAT_21 => 21,
     ];
 
-    public function calculate($amount, $vatClass): float
+    public function calculate($amount, string $vatClass, bool $vatIncluded = true): float
     {
         if (!isset(self::VAT_PERCENT[$vatClass])) {
             throw new \InvalidArgumentException('Invalid VAT class');
@@ -21,6 +21,12 @@ class VatCalculator
 
         $percent = self::VAT_PERCENT[$vatClass];
 
-        return round($amount * $percent / 100, 2);
+        if ($vatIncluded) {
+            $amountVat = round($amount / (100 + $percent) * $percent, 2);
+        } else {
+            $amountVat = round($amount * $percent / 100, 2);
+        }
+
+        return $amountVat;
     }
 }
