@@ -17,6 +17,7 @@ class ProductType extends AbstractType
             ->add('barcode')
             ->add('name')
             ->add('price')
+            ->add('freeItemFor')
             ->add(
                 'vatClass',
                 ChoiceType::class,

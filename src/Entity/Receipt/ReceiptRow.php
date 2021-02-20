@@ -64,6 +64,12 @@ class ReceiptRow extends SuperEntity
      */
     private $amountVat;
 
+    /**
+     * @ORM\Column(type="decimal", precision=15, scale=3)
+     * @Serializer\Groups(SerializeGroup::SHORT_DETAIL)
+     */
+    private $amountDiscount;
+
     public function __construct()
     {
         parent::__construct();
@@ -71,6 +77,7 @@ class ReceiptRow extends SuperEntity
         $this->count = 0;
         $this->amount = 0;
         $this->amountVat = 0;
+        $this->amountDiscount = 0;
     }
 
     public function getPrice(): ?string
@@ -154,6 +161,18 @@ class ReceiptRow extends SuperEntity
     public function setVatClass(string $vatClass): self
     {
         $this->vatClass = $vatClass;
+
+        return $this;
+    }
+
+    public function getAmountDiscount(): ?string
+    {
+        return $this->amountDiscount;
+    }
+
+    public function setAmountDiscount(string $amountDiscount): self
+    {
+        $this->amountDiscount = $amountDiscount;
 
         return $this;
     }

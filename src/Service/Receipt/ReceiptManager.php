@@ -72,10 +72,22 @@ class ReceiptManager
 
     public function recalculateRow(ReceiptRow $row): void
     {
-        $amount = round($row->getPrice() * $row->getCount(), 2);
+        $freeItemFor = $row->getProduct()->getFreeItemFor();
+        $price = $row->getPrice();
+        $count = $row->getCount();
+
+        if ($freeItemFor > 0) {
+            $countFree = intdiv($count, $freeItemFor);
+            $amountDiscount = round($price * $countFree, 2);
+        } else {
+            $amountDiscount = 0;
+        }
+
+        $amount = round($price * $count, 2) - $amountDiscount;
         $amountVat = $this->vatCalculator->calculate($amount, $row->getProduct()->getVatClass());
 
         $row->setAmount($amount)
+            ->setAmountDiscount($amountDiscount)
             ->setAmountVat($amountVat);
     }
 }

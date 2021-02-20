@@ -43,6 +43,13 @@ class Product extends SuperEntity
      */
     private $vatClass;
 
+    /**
+     * @Assert\GreaterThan(value="1")
+     * @ORM\Column(type="integer", nullable=true)
+     * @Serializer\Groups(SerializeGroup::SHORT_DETAIL)
+     */
+    private $freeItemFor;
+
     public function getBarcode(): ?string
     {
         return $this->barcode;
@@ -75,6 +82,18 @@ class Product extends SuperEntity
     public function setVatClass(string $vatClass): self
     {
         $this->vatClass = $vatClass;
+
+        return $this;
+    }
+
+    public function getFreeItemFor(): ?int
+    {
+        return $this->freeItemFor;
+    }
+
+    public function setFreeItemFor(?int $freeItemFor): self
+    {
+        $this->freeItemFor = $freeItemFor;
 
         return $this;
     }
