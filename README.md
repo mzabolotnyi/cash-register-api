@@ -19,12 +19,6 @@ Create .env.local file and set DATABASE_URL:
 $ cp .env .env.local
 ```
 
-Create database manually or run command:
-
-```bash
-$ bin/console doctrine:database:create
-```
-
 Run deploy file:
 
 ```bash
