@@ -11,14 +11,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Rest\Route("oauth")
- * @SWG\Tag(name="User / Authorization")
+ * @SWG\Tag(name="Authorization")
  */
 class OAuthController extends SuperController
 {
     /**
-     * @Route("/token", methods={"POST"}, name="app_get_token")
+     * @Route("/token", methods={"POST"})
      *
-     * @SWG\Post(summary="Authorize user",
+     * @SWG\Post(summary="Get access token",
      *
     description="
     |-------------------------------------------------------------------------------------------------------------|

@@ -43,3 +43,7 @@ services:
         class: App\Service\Serializer\CustomNameAnnotationStrategy
         arguments:
             - '@jms_serializer.camel_case_naming_strategy'
+
+    App\EventListener\Entity\ReceiptRowListener:
+        tags:
+            - { name: doctrine.orm.entity_listener, lazy: true }
